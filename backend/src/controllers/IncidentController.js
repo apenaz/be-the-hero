@@ -28,7 +28,7 @@ module.exports = {
     async create(request, response) {
         const { title, description, value } = request.body;
         const ong_id = request.headers.authorization;
-
+        
         /**
          * estou inserindo apenas um registro, portanto,
          * o valor do retorno (vetor de ids) de interesse
@@ -42,6 +42,7 @@ module.exports = {
         });
         return response.json({ id });
     },
+
     async delete(request, response) {
         const { id } = request.params;
         const ong_id = request.headers.authorization;
@@ -51,12 +52,13 @@ module.exports = {
             .select('ong_id')
             .first();
 
-        if (incidents.ong_id != ond_id) {
+        if (incident.ong_id !== ong_id) {
             return response.status(401).json({ error: 'Operation not permitted.' });
         }
 
         await connection('incidents').where('id', id).delete();
+
         return response.status(204).send();
-    },
+    }
 
 };

@@ -3,15 +3,15 @@ const connection = require('../database/connection');
 module.exports = {
     async create(request, response) {
         const { id } = request.body;
-        
-        const ong =  await  connection('ongs')
-        .where('id', id)
-        .select('name')
-        .first();
+        console.log(id);
+        const ong = await connection('ongs')
+            .where('id', id)
+            .select('name')
+            .first();
 
         if (!ong) {
-            return response.status(400).json({error: 'No ong found with this ID.'});
+            return response.status(400).json({ error: 'No ong found with this ID.' });
         }
-    return response.json({ong});
+        return response.json({ ong });
     }
 }
