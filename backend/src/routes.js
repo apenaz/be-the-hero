@@ -17,6 +17,7 @@ routes.post('/ongs', OngController.create);
 routes.get('/profile', ProfileController.index);
 
 routes.post('/sessions', SessionController.create);
+
 /**
  * INCIDENTS
  */
